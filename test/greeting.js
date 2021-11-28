@@ -16,4 +16,16 @@ contract("Greeting", function () {
       assert.equal(greetingValue, expectedValue, "greeting value matches")
     })
   })
+
+  describe("set()", () => {
+    it("sets greeting value", async () => {
+      const greetingContract = await Greeting.deployed();
+      const expectedValue = "Hello Tests!"
+
+      await greetingContract.set('Hello Tests!')
+      const greetingValue = await greetingContract.get()
+
+      assert.equal(greetingValue, expectedValue, "new greeting value matches")
+    })
+  })
 });
